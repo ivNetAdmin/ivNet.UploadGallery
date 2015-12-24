@@ -1,0 +1,127 @@
+﻿@model ivNet.UploadGallery.Models.GalleryViewModel
+@{
+    Script.Require("ivNet.Upload");    
+}
+
+@using (Html.BeginForm("Upload", "Gallery", new {area = "ivNet.UploadGallery"}, FormMethod.Post, new {enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-md-6">
+        <div class="col-md-12">
+              <div class="pull-right">
+                @ViewBag.Message
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <h2>Create a New Gallery</h2>
+                </div>
+            </div>
+          
+            <div class="control-group">
+                <div class="controls">                    
+                    <input type="text" id="gallery" class="form-control" placeholder="New Gallery Name" name="newgallery">
+                    <p class="help-block error-msg"></p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">                    
+                    <input type="text" class="form-control" placeholder="New Gallery Description" name="galleryDescription" >                    
+                </div>
+            </div>
+            <div class="control-group">
+                <div>    
+                   @* <label class="btn btn-default">
+                        <input type="radio" id="Personal" name="galleryType" value="Personal" checked/> Personal
+                    </label> 
+                    <label class="btn btn-default">
+                        <input type="radio" id="Shared" name="galleryType" value="Shared" /> Shared
+                    </label>   *@       
+                    <input class="btn btn-primary pull-right" Name="AddNewGallery" Type="Submit" value="Add New Gallery"/>                  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="control-group">
+                <div class="controls"> 
+                    <h2>Select Existing Gallery</h2>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    
+                    <select name="gallery">
+                        @foreach (var gallery in Model.Galleries)
+                        {
+                        <option>@Html.DisplayFor(galleryItem => gallery.Name) [@Html.DisplayFor(galleryItem => gallery.ImageCount) images]</option>
+                        }
+                    </select>
+                    <p class="help-block"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="control-group">
+                <div class="controls"> 
+                    <h2>Upload Image to Gallery</h2>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">                                    
+                    <input type="file" id="fileToUpload" name="file" />                            
+                    <p class="help-block error-msg"></p>
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <div class="controls">                    
+                    <input type="text" class="form-control" placeholder="Photograper" name="photograper" />
+                </div>
+            </div>
+@*            <div class="control-group">
+                <div class="controls">                    
+                    <input type="text" class="form-control" placeholder="Plot" name="plot" />                    
+                </div>
+            </div>*@
+            <div class="control-group">
+                <div class="controls">                    
+                    <input type="text" class="form-control" placeholder="Description" name="description" />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls pull-right">
+                    <input class="btn btn-primary"  Name="UploadImage" Type="Submit" value="Upload Image"/>            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Help</h2>
+        <p>Use this page to create a gallery</p>
+        <p><strong>If you are setting up a gallery for the first time</strong> </p>
+        <ul class="gallery-instruction">
+            <li>Give the gallery a name eg. "Club Presentation 2015", "1st Team v Chesham 2016", etc</li>
+            <li>Give a brief description of the gallery</li>
+            @*<li>Select if you want the gallery to be your own (personal) or shared with others</li>*@
+        </ul>
+        @*<p>Note: Personal means only you can add images to it but everyone can see it. Shared means anyone who can log on (other association members) can add images to the gallery and of course it is visible to everyone.</p>*@
+     
+        <p><strong>If you are adding images to a gallery</strong>  </p>
+        <p><i>Landscape images will work best</i></p>
+        <ul class="gallery-instruction">
+            <li>Select a gallery from the drop down list</li>
+            <li>Click on the "Choose file" button</li>
+            <li>Add an image description and who took the picture<br/>(if you want to, this is not essential)</li>
+        </ul>
+       
+        <h2>Techy bit</h2>
+        <p>To save time and your band width and data allowance, the site will only allow images that are smaller than 4MB (4000KB)
+            <br/>If you hover your mouse over a picture in file manager a pop up box will tell you the size of the image in kilobytes (KB). You can use "Paint" (this is on all Windows machines) or another image editor to resize the image.
+        </p>
+        <p>When you upload an image it will be scaled to fit the gallery. The picture ratio used is 4:3 (width:height). This is the normal digital camera ration. This means that if you image is not in this ration then the uploaded image will just be a 4:3 sample of the original image</p>
+    </div>
+
+}

@@ -1,0 +1,11 @@
+﻿Name: ivNet.UploadGallery
+AntiForgery: enabled
+Author: ivNet Ltd
+Website: http://www.ivnet.co.uk
+Version: 1.0
+OrchardVersion: 1.9.2
+Description: Upload Gallery Module
+Category: ivNet
+Features:
+    ivNet.UploadGallery:
+        Description: Module allowing user to upload pics and create own galleries

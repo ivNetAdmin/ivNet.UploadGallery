@@ -1,0 +1,26 @@
+﻿@{
+    Script.Require("ivNet.Gallery");       
+}
+
+<div id="GallerySelector" data-ng-app="ivNet.Gallery" class="col-md-12">
+    <div data-ng-controller="GalleryListController">
+        <table tr-ng-grid='' items='galleries' 
+               selected-items="galleryDetails" 
+               enable-filtering="false" enable-sorting="false" 
+               selection-mode="SingleRow">
+            <thead>
+                <tr>
+                    <th field-name="Name" display-name=""></th>
+                    <th field-name="ImageCount" display-name="#"></th>          
+                </tr>
+            </thead>
+            <tbody>
+                <tr>                            
+                    <td> 
+                        <img alt="thumbnail" src="{{gridItem.ImageUrl}}"/>                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>      
+    </div>
+</div>
