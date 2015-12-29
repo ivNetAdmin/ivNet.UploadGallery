@@ -28,6 +28,8 @@ namespace ivNet.UploadGallery
           .SetUrl("gallery.carousel.min.js")
           .SetVersion("1.0")
           .SetDependencies("jQuery");
+
+            manifest.DefineStyle("ivNet.GalleryCarousel").SetUrl("gallery.carousel.min.css");
         }
     }
 }
